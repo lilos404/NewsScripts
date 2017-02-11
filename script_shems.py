@@ -20,10 +20,12 @@ def praseOne(element):
 	#print "***************************"
 	extractor = Extractor(extractor='ArticleExtractor', url=utf8string)
 	text=extractor.getText()
-	#print text.encode("utf-8")
+	print "text" + text.encode("utf-8")
 	d["Article"]=text.encode("utf-8")
 	d["titleArticle"]= element.a["title"]
+	print "title" + element.a["title"]
 	d["linkImg"]=element.img["src"]
+	print "image" + element.img["src"]
 	listArticle.append(d)
 
 
@@ -31,7 +33,8 @@ soup = BeautifulSoup(page,'html.parser')
 
 for i in soup.findAll('div',{'class':'thumb'}):
     praseOne(i)
-f=codecs.open("/var/www/news/"+str(sys.argv[2])+".json",'w',"utf-8")
+
+""" f=codecs.open("/var/www/news/"+str(sys.argv[2])+".json",'w',"utf-8")
 f.write('{ "Articles": [')
 c=0
 for i in soup.findAll('div',{'class':'intro'}):
@@ -44,4 +47,6 @@ for i in soup.findAll('div',{'class':'intro'}):
 
 f.write("] \n }")
 f.close()
+
 #hi people
+"""
